@@ -1,0 +1,11 @@
+__pycache__
+.dockerignore
+.env
+.gitignore
+.tox/
+.vscode/
+*.env
+*.ini
+*.json
+*.toml
+Dockerfile

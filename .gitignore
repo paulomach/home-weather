@@ -1,0 +1,7 @@
+*.env
+*egg*
+.tox/
+.vscode
+__pycache__/
+build/
+dist/
