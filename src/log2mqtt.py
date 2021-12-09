@@ -13,11 +13,11 @@ class Log2MQTT:
 
     def log(self, data: dict):
         """Send the log to the MQTT broker."""
-        log_list = [f"temp: {data.get('temperature')}",
-                    f"cover: {data.get('cloud_cover')}%",
-                    f"radiation: {data.get('radiation')}"]
+        log_list = [f"{key[:4]}: {value}" for key, value in data.items()]
 
-        self.mqtt_client.publish(self.mqtt_topic, "\n".join(log_list))
+        result = self.mqtt_client.publish(self.mqtt_topic, "\n".join(log_list))
+        if result.rc != mqtt.MQTT_ERR_SUCCESS:
+            print(f"Error sending MQTT message. Return code: {result.rc}")
 
 
 if __name__ == "__main__":

@@ -13,11 +13,8 @@ from log2mqtt import Log2MQTT
 
 def _print_weather_data(data):
     """Print formmated weather data."""
-    log_list = [f"{dt.now().strftime('%Y-%m-%d %H:%M:%S')}",
-                f"temp: {data.get('temperature')}",
-                f"cover: {data.get('cloud_cover')}%",
-                f"radiation: {data.get('radiation')}"]
-
+    log_list = [f"{key[:4]}: {value}" for key, value in data.items()]
+    log_list.insert(0, f"{dt.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(" | ".join(log_list))
 
 
