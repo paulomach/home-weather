@@ -23,7 +23,7 @@ class Log2Influxdb:
             },
             "time": datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
             "fields": {
-                "temperature": data['temperature'],
+                "temperature": float(data['temperature']),
                 "cloud_cover": data['cloud_cover'],
                 "radiation": data['radiation'],
             }
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     import sys
     log2influxdb = Log2Influxdb(host=sys.argv[1], database=sys.argv[2])
     log2influxdb.write_weather_point({
-        'temperature': 20,
+        'temperature': 20.0,
         'cloud_cover': 50,
         'radiation': 10
     })
