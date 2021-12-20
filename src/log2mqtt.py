@@ -14,6 +14,8 @@ class Log2MQTT:
         self.mqtt_topic = topic
         self.mqtt_client = mqtt.Client(reconnect_on_failure=True)
         self.mqtt_client.connect(host)
+        self.enum_names = {value: name for name, value in vars(
+            mqtt).items() if name.__contains__("ERR")}
 
     def log2topic(self, data: dict, retries=3):
         """Send the log to the MQTT broker."""
@@ -22,16 +24,16 @@ class Log2MQTT:
         result = self.mqtt_client.publish(
             self.mqtt_topic, "\n".join(log_list), qos=1, retain=True)
         if result.rc != mqtt.MQTT_ERR_SUCCESS:
-            log(f"Error sending MQTT message. Return code: {result.rc}")
+            log(f"Error sending MQTT message. Error: {self.enum_names.get(result.rc)}")
             if retries > 0:
                 log(f"Retrying..{retries}")
                 self.mqtt_client.reconnect()
                 time.sleep(1)
                 self.log2topic(data, retries - 1)
             else:
-                print(f"Error connecting to MQTT broker. Retries: {retries}")
+                log(f"Error connecting to MQTT broker. Retries: {retries}")
         else:
-            print("Successfully logged to MQTT broker.")
+            log("Successfully logged to MQTT broker.")
 
 
 if __name__ == "__main__":
