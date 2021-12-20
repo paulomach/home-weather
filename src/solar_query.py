@@ -1,4 +1,5 @@
 """Query solcast radiation API."""
+import asyncio
 import requests
 
 from query import Query
@@ -62,7 +63,8 @@ if __name__ == "__main__":
     sq = SolarQuery(base_url=args.base_url, latitude=args.latitude,
                     longitude=args.longitude, api_key=args.api_key)
 
-    response = sq.get_data()
+    asyncio.run(sq.get_data())
+
     value = sq.parse_data()
 
     print(value)
