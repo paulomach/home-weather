@@ -42,6 +42,7 @@ def run():
             sleep(30)
         except KeyboardInterrupt:
             log("Exiting..")
+            break
 
 
 if __name__ == "__main__":
