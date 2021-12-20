@@ -1,5 +1,6 @@
 """Query solcast radiation API."""
 import asyncio
+
 import requests
 
 from query import Query

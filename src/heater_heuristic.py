@@ -6,7 +6,6 @@
 from datetime import datetime as dt
 
 
-
 def warm_month():
     """Return True if it's a warm month."""
     return dt.now().month in [1, 2, 3, 9, 10, 11, 12]
