@@ -10,6 +10,7 @@ from log2influxdb import Log2Influxdb
 from log2mqtt import Log2MQTT
 from logger import log
 
+
 def _print_weather_data(data):
     """Print formmated weather data."""
     log_list = [f"{key[:4]}: {value}" for key, value in data.items()]
@@ -40,7 +41,7 @@ def run():
             schedule.run_pending()
             sleep(30)
         except KeyboardInterrupt:
-            break
+            log("Exiting..")
 
 
 if __name__ == "__main__":

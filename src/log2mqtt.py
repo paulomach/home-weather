@@ -5,6 +5,7 @@ import paho.mqtt.client as mqtt
 
 from logger import log
 
+
 class Log2MQTT:
     """Send logs to logging topic."""
 

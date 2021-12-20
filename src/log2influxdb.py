@@ -5,6 +5,7 @@ from influxdb import InfluxDBClient
 
 from logger import log
 
+
 class Log2Influxdb:
     """Log to influxdb."""
 
